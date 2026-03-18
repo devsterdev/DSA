@@ -1,19 +1,21 @@
-#include <iostream>
+#include<iostream>
 #include <vector>
-
 using namespace std;
+
+int cnt = 0;
 
 void merge(vector<int> &arr, int low, int mid, int high){
   vector<int> temp;
   int left = low;
   int right = mid + 1;
   while (left <= mid && right <= high){
-    if (arr[left] < arr[right]){
+    if (arr[left] <= arr[right]){
       temp.push_back(arr[left]);
       left++;
     }
     else{
       temp.push_back(arr[right]);
+      cnt += (mid - left +1);
       right++;
     }
   }
@@ -44,26 +46,28 @@ void mergeSort(vector<int> &arr, int n){
   mS(arr, 0, n - 1);
 }
 
-int main(){
-  vector<int> arr;
-  int n;
+long long int numberOfInversions(vector<int> nums) {
+  int n = nums.size();
+  mS(nums, 0,  n-1);
+  return cnt;
+}
 
-  cout << "Enter number of elements: ";
+
+int main(){
+
+  int n;
+  cout << "Enter the size of arr: ";
   cin >> n;
 
-  cout << "Enter elements: ";
-  for (int i = 0; i < n; i++){
+  vector<int> arr;
+  cout << "Enter the ele of arr: ";
+  for(int i=0; i<n; i++){
     int x;
     cin >> x;
     arr.push_back(x);
   }
 
-  mergeSort(arr, n);
-
-  cout << "Sorted array: ";
-  for (int i = 0; i < n; i++){
-    cout << arr[i] << " ";
-  }
+  cout << numberOfInversions(arr);
 
   return 0;
 }
