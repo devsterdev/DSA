@@ -2,26 +2,14 @@
 #include <vector>
 using namespace std;
 
-bool searchMatrix(vector<vector<int>>& matrix, int target) {
-  if(matrix.size() == 0){
-    return false;
-  }
+int findMedian(vector<vector<int>>&matrix) {
   int n = matrix.size();
   int m = matrix[0].size();
-  int first = 0;
-  int secound = m-1;
-  while (first < n && secound >= 0){
-    if(matrix[first][secound] == target){
-      return true;
-    }
-    else if(matrix[first][secound] < target){
-      first++;
-    }
-    else{
-      secound--;
-    }
-  }
-  return false;
+  int low = 0;
+  int high = (m*n) - 1;
+  int mid = low + ((high - low) / 2);
+  int midEle = matrix[mid/m][mid%m];
+  return midEle;
 }
 
 int main(){
@@ -46,11 +34,7 @@ int main(){
     matrix.push_back(row);
   }
 
-  int target;
-  cout << "Enter target: ";
-  cin >> target;
-
-  cout << searchMatrix(matrix, target);
+  cout << findMedian(matrix);
 
   return 0;
 }
