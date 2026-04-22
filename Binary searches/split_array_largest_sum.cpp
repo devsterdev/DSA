@@ -20,7 +20,7 @@ int countSum(vector<int> nums, int pages){
   return k;
 }
 
-int splitArray(vector<int> &nums, int m)  {
+int splitArray(vector<int> &nums, int k)  {
   int n = nums.size();
   if(k > n) return -1;
   int low = *max_element(nums.begin(), nums.end());
